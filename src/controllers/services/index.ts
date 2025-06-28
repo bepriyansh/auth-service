@@ -10,11 +10,11 @@ export const getUserDataByIds = async (req: Request, res: Response, next: NextFu
         }
 
         const users = await User.find({ _id: { $in: userIds } })
-            .select('username profilePicture') 
+            .select('username profilePicture role') 
             .lean();
 
         res.success({status:200, data: {users: users.map((user)=>{
-            return {id:user._id, username: user.username, profilePicture: user.profilePicture}
+            return {id:user._id, username: user.username, profilePicture: user.profilePicture, role: user.role}
         })} });
     } catch (err) {
         console.error('Error in getUserDataByIds controller:', err);
