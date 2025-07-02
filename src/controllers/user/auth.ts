@@ -149,11 +149,11 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
 };
 
 export const logoutUser = async (req: Request, res: Response) => {
-    res.cookie('accessToken', '', {
+    res.cookie('accessToken', null, {
         httpOnly: false,
         expires: new Date(0)
     });
-    res.cookie('refreshToken', '', {
+    res.cookie('refreshToken', null, {
         httpOnly: true,
         expires: new Date(0)
     });
